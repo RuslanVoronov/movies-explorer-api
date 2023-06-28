@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const routes = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/log');
-const { mongoUrl } = require('./utils/constants');
+const { mongoUrl } = require('./config/dataBase');
 const { limiter } = require('./config/rateLimiter');
 
 const { PORT = 3000 } = process.env;
