@@ -7,14 +7,18 @@ const bodyParse = require('body-parser');
 const errorHandler = require('./middlewares/errorHandler');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/log');
-
+const { mongoUrl } = require('./utils/constants');
+const helmet = require('helmet');
+const { limiter } = require('./config/rateLimiter')
 const { PORT = 3000 } = process.env;
 
-mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb');
+mongoose.connect(mongoUrl);
 
 const app = express();
 app.use(bodyParse.json());
 app.use(requestLogger);
+app.use(limiter)
+app.use(helmet());
 app.use(routes);
 app.use(errorLogger);
 app.use(errors());
