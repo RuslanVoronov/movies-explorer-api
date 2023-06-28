@@ -3,24 +3,13 @@ const movieRoutes = require('./movies');
 const auth = require('../middlewares/auth');
 const router = require('express').Router();
 const cookieParser = require('cookie-parser');
-const { celebrate, Joi } = require('celebrate');
 const NotFoundError = require('../errors/NotFoundError');
 const { createUser, login } = require('../controllers/user');
+const { registerValidation, loginValidation } = require('../middlewares/validation');
 
-router.post('/signup', celebrate({
-    body: Joi.object().keys({
-        email: Joi.string().required().email(),
-        password: Joi.string().required().min(6),
-        name: Joi.string().required().min(2).max(30),
-    }),
-}), createUser);
+router.post('/signup', registerValidation, createUser);
 
-router.post('/signin', celebrate({
-    body: Joi.object().keys({
-        email: Joi.string().required().email(),
-        password: Joi.string().required().min(6),
-    }),
-}), login);
+router.post('/signin', loginValidation, login);
 
 router.use(cookieParser());
 router.use(auth);
