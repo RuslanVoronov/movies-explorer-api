@@ -2,69 +2,63 @@ const validator = require('validator');
 const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
-    country: {
-        type: String,
-        require: true,
+  country: {
+    type: String,
+    require: true,
+  },
+  director: {
+    type: String,
+    require: true,
+  },
+  duration: {
+    type: Number,
+    require: true,
+  },
+  year: {
+    type: String,
+    require: true,
+  },
+  description: {
+    type: String,
+    require: true,
+  },
+  image: {
+    type: String,
+    require: true,
+    validate: {
+      validator: (string) => validator.isURL(string),
     },
-    director: {
-        type: String,
-        require: true,
+  },
+  trailerLink: {
+    type: String,
+    require: true,
+    validate: {
+      validator: (string) => validator.isURL(string),
     },
-    duration: {
-        type: Number,
-        require: true,
+  },
+  thumbnail: {
+    type: String,
+    require: true,
+    validate: {
+      validator: (string) => validator.isURL(string),
     },
-    year: {
-        type: String,
-        require: true,
-    },
-    description: {
-        type: String,
-        require: true,
-    },
-    image: {
-        type: String,
-        require: true,
-        validate: {
-            validator: (string) => {
-                return validator.isURL(string);
-            },
-        },
-    },
-    trailerLink: {
-        type: String,
-        require: true,
-        validate: {
-            validator: (string) => {
-                return validator.isURL(string);
-            },
-        },
-    },
-    thumbnail: {
-        type: String,
-        require: true,
-        validate: {
-            validator: (string) => {
-                return validator.isURL(string);
-            },
-        },
-    },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        require: true,
-    },
-    movieId: {
-        type: String,
-        require: true,
-    },
-    nameRU: {
-        type: String,
-        require: true,
-    },
-    nameEN: {
-        type: String,
-        require: true,
-    },
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    require: true,
+  },
+  movieId: {
+    type: String,
+    require: true,
+  },
+  nameRU: {
+    type: String,
+    require: true,
+  },
+  nameEN: {
+    type: String,
+    require: true,
+  },
 });
 
 module.exports = mongoose.model('movie', movieSchema);
