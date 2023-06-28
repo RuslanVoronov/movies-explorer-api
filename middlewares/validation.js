@@ -1,5 +1,5 @@
 const { celebrate, Joi } = require('celebrate');
-
+const { urlRegEx, imageRegEx } = require('../utils/constants')
 const registerValidation = celebrate({
     body: Joi.object().keys({
         email: Joi.string().required().email(),
@@ -22,9 +22,9 @@ const createMovieValidation = celebrate({
         duration: Joi.number().required(),
         year: Joi.string().min(4).max(4).required(),
         description: Joi.string().required(),
-        image: Joi.string().required().regex(/^https?:\/\/(www\.)?[a-zA-Z0-9-.]+\.[a-z]{2,}\/[\S]+\.(png|jpg|jpeg)/i),
-        thumbnail: Joi.string().required().regex(/^https?:\/\/(www\.)?[a-zA-Z0-9-.]+\.[a-z]{2,}\/[\S]+\.(png|jpg|jpeg)/i),
-        trailerLink: Joi.string().required().regex(/^https?:\/\/(www\.)?[a-zA-Z0-9-.]+\.[a-z]{2,}\/[\S]+/i),
+        image: Joi.string().required().regex(imageRegEx),
+        thumbnail: Joi.string().required().regex(imageRegEx),
+        trailerLink: Joi.string().required().regex(urlRegEx),
         movieId: Joi.number().required(),
         nameRU: Joi.string().required(),
         nameEN: Joi.string().required(),
