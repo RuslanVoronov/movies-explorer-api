@@ -12,7 +12,7 @@ const { requestLogger, errorLogger } = require('./middlewares/log');
 const { mongoUrl } = require('./config/dataBase');
 const { limiter } = require('./config/rateLimiter');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 
 const allowedCors = [
   'https://mesto15.nomoredomains.rocks',
