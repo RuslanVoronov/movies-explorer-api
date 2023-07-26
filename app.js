@@ -15,10 +15,10 @@ const { limiter } = require('./config/rateLimiter');
 const { PORT = 3000 } = process.env;
 
 const allowedCors = [
-  'https://mesto15.nomoredomains.rocks',
-  'http://mesto15.nomoredomains.rocks',
-  'https://api.mesto15.nomoredomains.rocks',
-  'http://api.mesto15.nomoredomains.rocks',
+  'https://films.nomoreparties.sbs',
+  'http://films.nomoreparties.sbs',
+  'https://api.films.nomoreparties.sbs',
+  'http://api.films.nomoreparties.sbs',
   'http://localhost:3000',
   'http://localhost:3001',
   '*',
